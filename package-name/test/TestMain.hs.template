@@ -4,10 +4,10 @@ module Main ( main
 
 import Test.Framework (defaultMain, Test, testGroup)
 
-import $moduleName.Tests
+import QuickCheckTests
+--import HUnitTests
 
 main :: IO ()
-main =
-        defaultMain [ testGroup "Tests" testsFrom$moduleName
-                    ]
-
+main = defaultMain [ testGroup "Quick Check Tests" quickCheckTests
+                   -- , testGroup "HUnit Tests" hUnitTests
+                   ]

@@ -24,7 +24,8 @@ Executable $packageName
   Main-Is:             Main.hs
   -- Other-Modules:       
   -- Other-Extensions:    
-  Build-Depends:       base, $packageName
+  Build-Depends:       base
+					 , $packageName
   Hs-Source-Dirs:      src
   Default-Language:    Haskell2010
   Ghc-Options:         -Wall -threaded -O2
@@ -37,10 +38,10 @@ Test-Suite $packageName-tests
   Ghc-Options:          -Wall -threaded -rtsopts -with-rtsopts=-N
   Main-Is:              TestMain.hs
   Build-Depends:        base
-                      , QuickCheck,
-                      , HUnit,
-                      , test-framework,
-                      , test-framework-hunit,
+                      , QuickCheck
+                      , HUnit
+                      , test-framework
+                      , test-framework-hunit
                       , test-framework-quickcheck2
 
 Source-Repository head

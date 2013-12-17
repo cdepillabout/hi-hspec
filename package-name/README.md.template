@@ -16,6 +16,12 @@ TODO: Write usage instructions here
 cabal configure --enable-tests && cabal build && cabal test
 ```
 
+or
+
+```
+make tests
+```
+
 ## Contributing
 
 TODO: Write contribution instructions here
