@@ -25,7 +25,7 @@ Executable $packageName
   -- Other-Modules:       
   -- Other-Extensions:    
   Build-Depends:       base
-					 , $packageName
+                     , $packageName
   Hs-Source-Dirs:      src
   Default-Language:    Haskell2010
   Ghc-Options:         -Wall -threaded -O2
