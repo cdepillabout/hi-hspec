@@ -1,3 +1,5 @@
-module $moduleName where
+module $moduleName
+    (
+    ) where
 
 import $moduleName.Internal
