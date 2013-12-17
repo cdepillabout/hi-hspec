@@ -1,31 +1,47 @@
 Name:                   $packageName
-Version:                0.0.0
-Author:                 $author<$email>
-Maintainer:             $author<$email>
-License:                BSD3
+Version:                0.1.0.0
+Author:                 $author <$email>
+Maintainer:             $author <$email>
+-- Homepage:               
+License:                GPL-3
 License-File:           LICENSE
 -- Synopsis:               
 -- Description:            
+-- Category:               
 Cabal-Version:          >= 1.10
+-- Extra-Source-Files:     
 Build-Type:             Simple
 
 Library
   Default-Language:     Haskell2010
   HS-Source-Dirs:       src
-  GHC-Options:          -Wall
+  GHC-Options:          -Wall -threaded -O2
   Exposed-Modules:      $moduleName
   Other-Modules:        $moduleName.Internal
   Build-Depends:        base >= 4 && < 5
 
-Test-Suite spec
+Executable $packageName
+  Main-Is:             Main.hs
+  -- Other-Modules:       
+  -- Other-Extensions:    
+  Build-Depends:       base, $packageName
+  Hs-Source-Dirs:      src
+  Default-Language:    Haskell2010
+  Ghc-Options:         -Wall -threaded -O2
+
+Test-Suite $packageName-tests
   Type:                 exitcode-stdio-1.0
   Default-Language:     Haskell2010
   Hs-Source-Dirs:       src
                       , test
-  Ghc-Options:          -Wall
-  Main-Is:              Spec.hs
+  Ghc-Options:          -Wall -threaded -rtsopts -with-rtsopts=-N
+  Main-Is:              TestMain.hs
   Build-Depends:        base
-                      , hspec
+                      , QuickCheck,
+                      , HUnit,
+                      , test-framework,
+                      , test-framework-hunit,
+                      , test-framework-quickcheck2
 
 Source-Repository head
   Type:                 git
