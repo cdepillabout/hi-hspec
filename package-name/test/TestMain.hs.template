@@ -1,0 +1,13 @@
+module Main ( main
+            )
+            where
+
+import Test.Framework (defaultMain, Test, testGroup)
+
+import $moduleName.Tests
+
+main :: IO ()
+main =
+        defaultMain [ testGroup "Tests" testsFrom$moduleName
+                    ]
+
