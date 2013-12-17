@@ -47,6 +47,11 @@ show-test-log:
 	@echo -e "---------------"
 	-@bash -c "cat dist/test/*[^0123456789].log"
 
+show-coverage:
+	@echo -e "\nLatest Coverage"
+	@echo -e "---------------"
+	-@bash -c "firefox -no-remote dist/hpc/html/*/hpc_index.html"
+
 clean: 
 	@echo -e "\nCleaning"
 	@echo -e "--------"
