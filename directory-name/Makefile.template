@@ -12,7 +12,7 @@ all: default
 configure: .cabal-sandbox
 	@echo -e "\nRunning Cabal Configure"
 	@echo -e "-----------------------"
-	@cabal configure --enable-tests --enable-library-coverage
+	@cabal configure --enable-tests --enable-library-coverage --enable-library-profiling --enable-executable-profiling
 
 install-deps: .cabal-sandbox
 	@echo -e "\nInstalling project dependencies"
