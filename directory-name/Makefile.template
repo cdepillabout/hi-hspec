@@ -48,7 +48,7 @@ tests test: build-tests
 profile profiling: build dist/profiling
 	@echo -e "\nProfiling Project"
 	@echo -e "-----------------"
-	@cabal run -- +RTS -i0.02 -P -h -s -RTS 100
+	@cabal run -- +RTS -i0.02 -P -h -s -RTS 100   # You can also use -L to set width of labels
 	@mv $packageName.prof $packageName.hp dist/profiling/
 	@echo
 	@cat dist/profiling/$packageName.prof
@@ -68,3 +68,6 @@ clean:
 	@echo -e "\nCleaning"
 	@echo -e "--------"
 	-rm -rf ./dist
+
+really-clean: clean
+	-rm -rf ./.cabal-sandbox
