@@ -2,22 +2,25 @@
 default: build
 all: default
 
-.PHONY: default all build build-tests run test tests clean configure install-deps show-test-log
+.PHONY: default all build build-tests run test tests profile profiling clean configure install-deps show-test-log
 
 .cabal-sandbox:
 	@echo -e "\nInitting Cabal Sandbox"
 	@echo -e "----------------------"
 	@cabal sandbox init
 
+dist/profiling:
+	@mkdir -p dist/profiling
+
 configure: .cabal-sandbox
 	@echo -e "\nRunning Cabal Configure"
 	@echo -e "-----------------------"
-	@cabal configure --enable-tests --enable-library-coverage --enable-library-profiling --enable-executable-profiling
+	@cabal configure --enable-tests --enable-library-coverage --enable-library-profiling
 
 install-deps: .cabal-sandbox
 	@echo -e "\nInstalling project dependencies"
 	@echo -e "-------------------------------"
-	@cabal install --only-dependencies --enable-tests -j8
+	@cabal install --only-dependencies --enable-tests --enable-library-coverage --enable-library-profiling -j8
 
 build: install-deps configure
 	@echo -e "\nBuilding Project"
@@ -41,6 +44,15 @@ tests test: build-tests
 	@echo -e "\nTest Log"
 	@echo -e "--------"
 	-@bash -c "cat dist/test/*[^0123456789].log"
+
+profile profiling: build dist/profiling
+	@echo -e "\nProfiling Project"
+	@echo -e "-----------------"
+	@cabal run -- +RTS -p -h -s -RTS 100
+	@mv $packageName.prof $packageName.hp dist/profiling/
+	@echo
+	@cat dist/profiling/$packageName.prof
+	@bash -c "(cd dist/profiling/ && hp2ps $packageName.hp)"
 
 show-test-log:
 	@echo -e "\nLatest Test Log"
