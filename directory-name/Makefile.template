@@ -52,7 +52,7 @@ profile profiling: build dist/profiling
 	@mv $packageName.prof $packageName.hp dist/profiling/
 	@echo
 	@cat dist/profiling/$packageName.prof
-	@bash -c "(cd dist/profiling/ && hp2ps $packageName.hp)"
+	@bash -c "(cd dist/profiling/ && hp2ps -c -e8in $packageName.hp)"
 
 show-test-log:
 	@echo -e "\nLatest Test Log"
