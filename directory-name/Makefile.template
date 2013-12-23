@@ -2,7 +2,7 @@
 default: build
 all: default
 
-.PHONY: default all build build-tests run test tests profile profiling clean configure install-deps show-test-log
+.PHONY: default all build compile build-tests run test tests profile profiling ghci repl clean configure install-deps show-test-log
 
 .cabal-sandbox:
 	@echo -e "\nInitting Cabal Sandbox"
@@ -22,7 +22,7 @@ install-deps: .cabal-sandbox
 	@echo -e "-------------------------------"
 	@cabal install --only-dependencies --enable-tests --enable-library-coverage --enable-library-profiling --enable-executable-profiling -j8
 
-build: install-deps configure
+build compile: install-deps configure
 	@echo -e "\nBuilding Project"
 	@echo -e "----------------"
 	@cabal build
@@ -53,6 +53,9 @@ profile profiling: build dist/profiling
 	@echo
 	@cat dist/profiling/$packageName.prof
 	@bash -c "(cd dist/profiling/ && hp2ps -c -e8in $packageName.hp)"
+
+ghci repl: build
+	@cabal repl
 
 show-test-log:
 	@echo -e "\nLatest Test Log"
