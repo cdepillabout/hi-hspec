@@ -33,6 +33,7 @@ build-tests: install-deps configure
 	@cabal build $packageName-tests
 
 run: build
+	-@rm -f $packageName.tix
 	@echo -e "\nRunning Project"
 	@echo -e "---------------"
 	@bash -c "time cabal run -- 100 50"
