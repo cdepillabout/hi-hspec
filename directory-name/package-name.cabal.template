@@ -21,14 +21,14 @@ Library
   Build-Depends:        base
 
 Executable $packageName
-  Main-Is:             Main.hs
-  -- Other-Modules:       
-  -- Other-Extensions:    
-  Build-Depends:       base
-                     , $packageName
-  Hs-Source-Dirs:      src
-  Default-Language:    Haskell2010
-  Ghc-Options:         -Wall -threaded -O2 -rtsopts -fprof-auto
+  Main-Is:              Main.hs
+  -- Other-Modules:        
+  -- Other-Extensions:     
+  Build-Depends:        base
+                      , $packageName
+  Hs-Source-Dirs:       src
+  Default-Language:     Haskell2010
+  Ghc-Options:          -Wall -threaded -O2 -rtsopts -fprof-auto
 
 Test-Suite $packageName-tests
   Type:                 exitcode-stdio-1.0
